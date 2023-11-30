@@ -18,28 +18,24 @@ namespace TencentCloud\Weilingwith\V20230427\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * DescribeAlarmStatusList请求参数结构体
+ * 告警状态列表返回
  *
- * @method string getApplicationToken() 获取应用token
- * @method void setApplicationToken(string $ApplicationToken) 设置应用token
- * @method string getWorkspaceId() 获取工作空间ID
- * @method void setWorkspaceId(string $WorkspaceId) 设置工作空间ID
+ * @method array getList() 获取告警状态返回结构
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setList(array $List) 设置告警状态返回结构
+注意：此字段可能返回 null，表示取不到有效值。
  */
-class DescribeAlarmStatusListRequest extends AbstractModel
+class DescribeAlarmStatusListRes extends AbstractModel
 {
     /**
-     * @var string 应用token
+     * @var array 告警状态返回结构
+注意：此字段可能返回 null，表示取不到有效值。
      */
-    public $ApplicationToken;
+    public $List;
 
     /**
-     * @var string 工作空间ID
-     */
-    public $WorkspaceId;
-
-    /**
-     * @param string $ApplicationToken 应用token
-     * @param string $WorkspaceId 工作空间ID
+     * @param array $List 告警状态返回结构
+注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
     {
@@ -54,12 +50,13 @@ class DescribeAlarmStatusListRequest extends AbstractModel
         if ($param === null) {
             return;
         }
-        if (array_key_exists("ApplicationToken",$param) and $param["ApplicationToken"] !== null) {
-            $this->ApplicationToken = $param["ApplicationToken"];
-        }
-
-        if (array_key_exists("WorkspaceId",$param) and $param["WorkspaceId"] !== null) {
-            $this->WorkspaceId = $param["WorkspaceId"];
+        if (array_key_exists("List",$param) and $param["List"] !== null) {
+            $this->List = [];
+            foreach ($param["List"] as $key => $value){
+                $obj = new AlarmStatusData();
+                $obj->deserialize($value);
+                array_push($this->List, $obj);
+            }
         }
     }
 }
